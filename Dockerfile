@@ -1,20 +1,20 @@
-# Usar uma imagem base do Python
-FROM python:3.9-slim
+# Usa uma imagem leve do Python
+FROM python:3.11
 
-# Definir o diretório de trabalho dentro do contêiner
+# Define o diretório de trabalho no contêiner
 WORKDIR /app
 
-# Copiar o arquivo de dependências para o contêiner
-COPY requirements.txt requirements.txt
+# Copia os arquivos necessários para o contêiner
+COPY requirements.txt .
 
-# Instalar as dependências do Python
+# Instala as dependências do Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar o restante do código do projeto para o contêiner
+# Copia o restante do código para o contêiner
 COPY . .
 
-# Expor a porta padrão do Streamlit
+# Expõe a porta padrão do Streamlit
 EXPOSE 8501
 
-# Comando para executar o Streamlit
-CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.enableCORS=false"]
+# Comando para rodar o Streamlit
+CMD ["streamlit", "run", "app.py"]
